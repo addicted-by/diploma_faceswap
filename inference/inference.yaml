@@ -1,0 +1,5 @@
+inferencer:
+  name: FaceShifterInferencer
+  source: check
+  target: check2
+  output_dir: check3
