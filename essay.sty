@@ -1,0 +1,406 @@
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+% \usepackage[russian]{babel}
+\usepackage[russian, english]{babel}
+\babelfont{rm}{Droid Serif}
+\babelfont{sf}{Droid Sans}
+
+
+\usepackage{amssymb,amsfonts,amsmath,amsthm}
+\usepackage{dsfont} % \mathds{R}
+% packeges for table
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{algpseudocode}
+\usepackage{ulem} % package for underlining
+\usepackage{algorithm}
+\makeatletter
+\renewcommand*{\ALG@name}{Алгоритм}
+\makeatother
+\usepackage{graphicx} % inserting images
+\usepackage{multicol}
+% https://es.overleaf.com/learn/latex/Pgfplots_package
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+\usepackage{pdfpages} % for pdf inserting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%             general page settings               %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[left=2.5cm,top=2cm,right=2cm,bottom=2cm]{geometry}
+\usepackage{indentfirst}        % indentation for first paragraph
+\setlength\parindent{1.25cm}     % paragraph indentation
+\linespread{1.3}                % 1.5 interval
+\frenchspacing                  % pretty space length
+\sloppy                         % pretty line breaking
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%            numbering on top of page             %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyheadoffset{0mm}
+\fancyfootoffset{0mm}
+\setlength{\headheight}{17pt}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+% overriting plain style of chapter first page (plain -> numbered)
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \rhead{\thepage}}
+
+% \setcounter{page}{2} % numbering begin from second page
+
+\fancypagestyle{supplement1}{
+\fancyhf{}
+\rhead{\thepage\\Приложение 1}}
+
+\fancypagestyle{supplement2}{
+\fancyhf{}
+\rhead{\thepage\\Приложение 2}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%                   TOC styling                   %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{titletoc}
+\usepackage{float}
+\contentsmargin{0cm}                         % removes the default margin
+
+% chapter text styling
+\titlecontents{chapter}[1.25cm]              % indentation
+{\addvspace{10pt}\normalsize\normalfont\bfseries} % spacing and font options for chapters
+{}  % chapter number
+{}
+{\normalsize\normalfont\bfseries\;\titlerule*[.5pc]{.}\;\thecontentspage} % page number
+
+% section text styling
+\titlecontents{section}[2.75cm]              % indentation
+{\addvspace{10pt}\normalsize\normalfont}     % spacing and font options for sections
+{\contentslabel[\thecontentslabel]{1.25cm}}  % section number
+{}
+{\normalfont\;\titlerule*[.5pc]{.}\;\thecontentspage} % page number
+[]
+
+% subsection text styling
+\titlecontents{subsection}[3.5cm]            % indentation
+{\addvspace{10pt}\normalsize\normalfont}     % spacing and font options for subsections
+{\contentslabel[\thecontentslabel]{1.25cm}}  % section number
+{}
+{\normalfont\;\titlerule*[.5pc]{.}\;\thecontentspage} % page number
+[]
+
+% subsubsection text styling
+\titlecontents{subsubsection}[4.25cm]            % indentation
+{\addvspace{10pt}\normalsize\normalfont}     % spacing and font options for subsections
+{\contentslabel[\thecontentslabel]{1.25cm}}  % section number
+{}
+{\normalfont\;\titlerule*[.5pc]{.}\;\thecontentspage} % page number
+[]
+
+% subsubsubsection text styling
+\titlecontents{subsubsubsection}[5.75cm]            % indentation
+{\addvspace{10pt}\normalsize\normalfont}     % spacing and font options for subsections
+{\contentslabel[\thecontentslabel]{1.25cm}}  % section number
+{}
+{\normalfont\;\titlerule*[.5pc]{.}\;\thecontentspage} % page number
+[]
+
+
+\setcounter{tocdepth}{2}                     % depth of TOC tree
+\addto\captionsrussian{\def\contentsname{СОДЕРЖАНИЕ}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%                 titles styling                  %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[compact]{titlesec}
+
+% hyperref is loaded after titlesec, as actually recommended in hyperref's manual
+\usepackage{hyperref}
+
+% section number from 1.1 -> 1
+\renewcommand{\thesection}{\arabic{section}}
+
+% command for centering chapter heading (ОСНОВНАЯ ЧАСТЬ ...)
+\newcommand*\CenterChapterHeading{%
+% chapter title styling
+% vertical space after numbered title
+\titlespacing*{\chapter}{0pt}{11cm}{0pt}
+% vertical space after unnumbered title
+\titlespacing*{name=\chapter, numberless}{0pt}{11cm}{0pt}
+\titleformat{\chapter}[display]
+{}{}{0pt}
+{
+	\filcenter\Large\normalfont\bfseries
+}[{
+}]
+}
+
+\newcommand*\NonNumberedSection{%
+\titleformat{\section}[display]
+{
+	\filcenter\normalsize\normalfont\bfseries
+}{\pagebreak}{-22pt}{}
+}
+
+% chapter title styling
+% vertical space after numbered title
+\titlespacing*{\chapter}{0pt}{-40pt}{1cm}
+% vertical space after unnumbered title
+\titlespacing*{name=\chapter, numberless}{0pt}{-22pt}{1cm}
+\titleformat{\chapter}[display]
+{}{}{0pt}
+{
+	\filcenter\normalsize\normalfont\bfseries
+}[{
+% 	\vspace{3pt}
+% 	\titlerule[1.5pt]
+}]
+
+% section title styling
+\titlespacing*{\section}{0pt}{0pt}{22pt}
+\titleformat{\section}[display]
+{
+	\filcenter\normalsize\normalfont\bfseries
+}{\pagebreak}{-22pt}{\thesection\quad}
+
+% subsection title styling
+\titlespacing*{\subsection}{0pt}{0pt}{22pt}
+\titleformat{\subsection}[display]
+{
+	\centering\bfseries
+}{}{12pt}{\thesubsection\quad}
+
+% subsubsection title styling
+\titlespacing*{\subsubsection}{0pt}{0pt}{22pt}
+\titleformat{\subsubsection}[display]
+{
+	\centering\bfseries
+}{}{12pt}{\thesubsubsection\quad}
+
+
+\titlespacing*{\paragraph}{0pt}{0pt}{22pt}
+\titleformat{\paragraph}[display]
+{
+	\centering\bfseries
+}{}{12pt}{\theparagraph\quad}
+
+\setcounter{secnumdepth}{4} % depth of counter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%                  theorem style                  %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{TheoremStyle}
+{}                % space above
+{}                % space below
+{%\slshape
+}                 % theorem body font % (default is "\upshape")
+{}                % indent amount
+{\sc}             % theorem head font % (default is \mdseries)
+{.}               % punctuation after theorem head % default: no punctuation
+{ }               % space after theorem head
+{}                % theorem head spec
+\theoremstyle{TheoremStyle}
+
+\newtheorem{proposition}{Утверждение}
+\newtheorem{definition}{Определение}
+\newtheorem{theorem}{Теорема}
+\newtheorem{theorem*}{Теорема}
+% numbering
+\numberwithin{proposition}{section}
+\numberwithin{definition}{section}
+\numberwithin{theorem}{section}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%             pic and table captions              %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[tableposition=top]{caption}
+\usepackage{subcaption} % for more detailed captions
+% \DeclareCaptionLabelFormat: #1 — standart lable text, #2  - number of pic/table
+\DeclareCaptionLabelFormat{gostfigure}{Рис. #2.}
+\DeclareCaptionLabelFormat{gosttable}{Таблица #2.}
+\DeclareCaptionLabelSeparator{gost}{~}
+\captionsetup{labelsep=gost}
+\captionsetup[figure]{labelformat=gostfigure}
+\captionsetup[table]{justification=raggedleft,singlelinecheck=off}
+% cyrillic representation of subfigure captions: (а), (б), ...
+\renewcommand{\thesubfigure}{\asbuk{subfigure}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%           itemize и enumerate styling           %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{enumitem}
+\makeatletter
+    \AddEnumerateCounter{\asbuk}{\@asbuk}{м)}
+\makeatother
+
+\setlist{nolistsep, itemsep=6pt plus 2pt minus 2pt}
+
+\renewcommand{\labelitemi}{-}
+\renewcommand{\labelenumi}{\asbuk{enumi})}
+\renewcommand{\labelenumii}{\arabic{enumii})}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%           pic and equation numbering            %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\numberwithin{figure}{section}
+\numberwithin{equation}{section}
+\numberwithin{table}{section}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%                      bibtex                     %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{csquotes}
+
+% first compile
+% \usepackage[backend=biber, style=gost-numeric, citestyle=numeric, sorting=nyt]{biblatex}
+
+% second and third compile
+\usepackage[backend=biber, style=gost-numeric, citestyle=numeric, sorting=nyt, defernumbers=true]{biblatex}
+
+\renewcommand*{\mkbibhdnamefamily}[1]{#1} % textit -> text
+\DeclareBibliographyCategory{SourcesGOST}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%                  code listing                   %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xcolor}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    numberstyle=\tiny\color{codegray},
+    basicstyle=\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=1,
+    columns=fullflexible
+}
+
+
+\lstset{style=mystyle}
+
+% russian language
+\lstset{
+    inputencoding=utf8,
+    extendedchars=true,
+    literate=
+    {а}{{\cyra}}1
+    {б}{{\cyrb}}1
+    {в}{{\cyrv}}1
+    {г}{{\cyrg}}1
+    {д}{{\cyrd}}1
+    {е}{{\cyre}}1
+    {ё}{\"{\cyre}}1
+    {ж}{{\cyrzh}}1
+    {з}{{\cyrz}}1
+    {и}{{\cyri}}1
+    {й}{{\cyrishrt}}1
+    {к}{{\cyrk}}1
+    {л}{{\cyrl}}1
+    {м}{{\cyrm}}1
+    {н}{{\cyrn}}1
+    {о}{{\cyro}}1
+    {п}{{\cyrp}}1
+    {р}{{\cyrr}}1
+    {с}{{\cyrs}}1
+    {т}{{\cyrt}}1
+    {у}{{\cyru}}1
+    {ф}{{\cyrf}}1
+    {х}{{\cyrh}}1
+    {ц}{{\cyrc}}1
+    {ч}{{\cyrch}}1
+    {ш}{{\cyrsh}}1
+    {щ}{{\cyrshch}}1
+    {ъ}{{\cyrhrdsn}}1
+    {ы}{{\cyrery}}1
+    {ь}{{\cyrsftsn}}1
+    {э}{{\cyrerev}}1
+    {ю}{{\cyryu}}1
+    {я}{{\cyrya}}1
+    {А}{{\CYRA}}1
+    {Б}{{\CYRB}}1
+    {В}{{\CYRV}}1
+    {Г}{{\CYRG}}1
+    {Д}{{\CYR96}}1
+    {Е}{{\CYRE}}1
+    {Ё}{{\"{\CYRE}}}1
+    {Ж}{{\CYRZH}}1
+    {З}{{\CYRZ}}1
+    {И}{{\CYRI}}1
+    {Й}{{\CYRISHRT}}1
+    {К}{{\CYRK}}1
+    {Л}{{\CYRL}}1
+    {М}{{\CYRM}}1
+    {Н}{{\CYRN}}1
+    {О}{{\CYRO}}1
+    {П}{{\CYRP}}1
+    {Р}{{\CYRR}}1
+    {С}{{\CYRS}}1
+    {Т}{{\CYRT}}1
+    {У}{{\CYRU}}1
+    {Ф}{{\CYRF}}1
+    {Х}{{\CYRH}}1
+    {Ц}{{\CYRC}}1
+    {Ч}{{\CYRCH}}1
+    {Ш}{{\CYRSH}}1
+    {Щ}{{\CYRSHCH}}1
+    {Ъ}{{\CYRHRDSN}}1
+    {Ы}{{\CYRERY}}1
+    {Ь}{{\CYRSFTSN}}1
+    {Э}{{\CYREREV}}1
+    {Ю}{{\CYRYU}}1
+    {Я}{{\CYRYA}}1
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%            counters for first page              %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{lastpage} % pages counter
+
+% pics and tables counter
+\newcounter{totfigures}
+\newcounter{tottables}
+\makeatletter
+    \AtEndDocument{%
+      \addtocounter{totfigures}{\value{figure}}%
+      \addtocounter{tottables}{\value{table}}%
+      \immediate\write\@mainaux{%
+        \string\gdef\string\totfig{\number\value{totfigures}}%
+        \string\gdef\string\tottab{\number\value{tottables}}%
+      }%
+    }
+\makeatother
+
+
+\usepackage{realboxes}

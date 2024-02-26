@@ -1,8 +1,0 @@
-snapshot:
-  repo_id: diffusers/dog-example
-  local_dir: ./data
-  repo_type: dataset
-  ignore_patterns: .gitattributes
-
-additional:
-  add_to_dvc: False

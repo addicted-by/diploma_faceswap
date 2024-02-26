@@ -1,12 +1,15 @@
-# Faceswap using diffusion models
-Faceswap using diffusion models
+# Report page
+## Faceswap using generative models
 
-TO-DO List:
 
-- [ ] Add to dvc all current ckpts/files
-- [ ] Migrate inference pipelines for FaceSwap task [TBD before 03.03.24]
-    - [ ] FaceShifter [done]
-    - [ ] DiffSwap [TBD before 03.03.24]
-    - [ ] Photoswap [TBD before 03.03.24]
-- [X] Migrate stable diffusion training via Dreambooth and LoRA
-- [X] Playground notebooks from `diffusers` and `hugging_face` tutorials
+
+## TO DO List
+- [ ] 
+- [x] Динамика Ланжевена как стохастическая реализация уравнения Фоккера-Планка
+- [x] Диффузионные модели с точки зрения термодинамики
+- [x] 
+- [ ] Обуславливаемые диффузионные модели
+- [ ] Обучение обуславливаемых диффузионных моделей
+- [ ] LoRA
+- [ ] 
+- [ ] 

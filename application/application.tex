@@ -1,0 +1,96 @@
+\phantomsection
+{\NonNumberedSection\section*{ПРИЛОЖЕНИЕ 1}}
+\addcontentsline{toc}{section}{ПРИЛОЖЕНИЕ 1}
+\pagestyle{supplement1}
+\label{AppendixA}
+
+\textbf{Динамика Ланжевена как стохастическая реализация уравнения Фоккера-Планка}
+
+Рассмотрим стохастическое дифференциальное уравнение (СДУ) в общем виде:
+\[
+    dx = f(x, t)dt + g(t) dW,
+\]
+где $W$ -- Винеровский процесс. 
+
+\begin{theorem}
+    Эволюция распределения $p(x|t)$ по времени $t$ детерменированно описывается дифференциальным уравнением Фоккера-Планка:
+    \[
+        \dfrac{\partial p(x|t)}{\partial t} = -\dfrac{\partial }{\partial x} \left(f\left(x,t\right)p(x|t) \right) + \dfrac{1}{2}g^2 (t) \dfrac{\partial^2}{\partial x^2} \left(p(x|t)\right)
+    \]
+\end{theorem}
+\begin{proof}
+    Докажем отдельно для детерминированной и стохастической частей. Детерменированная часть $(g(t) = 0)$. Пусть $\hat{x} = x + f(x,t)dt$. Тогда:
+    \[
+        p(\hat{x} | t + dt) = p(\hat{x} - f(x,t)dt | t) \bigg|\dfrac{\partial }{\partial x} (x + f(x, t)dt)\bigg|^{-1}.
+    \]
+    Разложем в ряд Тейлора в точке $\hat{x}$ функцию $f(x,t)$:
+    \[
+        f(x, t) = f(\hat{x}, t) + \dfrac{\partial f(\hat{x}, t)}{\partial x} f(x,t)dt + o(dt).
+    \]
+    Для упрощения выкладок рассмотрим одномерный случай. 
+    \[
+        \begin{array}{c}
+            p(\hat{x} | t + dt) = p\left(\hat{x} - f(\hat{x}, t) dt - \underbrace{\dfrac{\partial f(\hat{x}, t)}{\partial x} f(x, t) dt^2}_{\text{т.к. } dt \to 0, \text{ то } o(dt)} + o(dt)\right)\left(1 + \dfrac{\partial f(x, t)}{\partial x} dt\right)^{-1} = \\[0.5cm]
+            = p(\hat{x} - f(\hat{x}, t)dt + o(dt)| t) \cdot \left(1 + \dfrac{\partial f(x, t)}{\partial x}\right)^{-1} = \\[0.5cm]
+            = p(\hat{x} - f(\hat{x}, t) dt + o(dt) | t) \cdot \left(1 - \dfrac{\partial f(x, t)}{\partial x} dt + o(dt)\right) = \\ [0.5cm]
+            = \left[p(\hat{x} | t) - \dfrac{\partial p(\hat{x} | t)}{\partial x} \dfrac{\partial f(x,t)}{\partial x} f(\hat{x}, t)dt^2 - \dfrac{\partial p(\hat{x} | t)}{\partial x} f(\hat{x}, t)dt - p(\hat{x} | t) \dfrac{\partial f(x,t)}{\partial x} dt + o(t)\right] = \\[0.5cm]
+            = p(\hat{x} | t) - \dfrac{\partial p(\hat{x} | t)}{\partial x} f(\hat{x}, t) dt - \dfrac{\partial f(x,t)}{\partial x} p(\hat{x} | t) dt + o(t) = \\
+            p(\hat{x}  | t) - dt \left(\dfrac{\partial p(\hat{x}, t)}{\partial x} f(\hat{x} , t) + \dfrac{\partial f(x,t)}{\partial x} p(\hat{x} | t)\right) + o(dt) = \\
+            = p(\hat{x} | t) - dt\left(\dfrac{\partial p(\hat{x} | t)}{\partial x} f(\hat{x}, t) + \dfrac{\partial f(\hat{x}, t)}{\partial x} p(\hat{x}, t)\right) + o(dt)
+        \end{array}
+    \]
+    Перенесем налево $p(\hat{x} | t)$, разделим обе части на $dt$ и рассмотрим $\lim\limits_{dt\to 0}$:
+    \[
+        \underline{\dfrac{\partial p(\hat{x} | t)}{\partial t} = -\dfrac{\partial }{\partial x} \left(f(\hat{x}, t) p(\hat{x} \ t)\right). }
+    \]
+
+    Рассмотрим теперь стохастическую часть. Пусть $\hat{x} = x + \varepsilon$, где $\varepsilon \sim \mathcal{N}(\varepsilon| 0, g^2(t) dt)$:
+    \[
+        \begin{array}{c}
+        \displaystyle p(\hat{x} | t+dt) = \int p(\hat{x} - \varepsilon| t) \mathcal{N}(\varepsilon | 0, g^2(t)dt) d\varepsilon = \\[0.5cm]
+        \displaystyle \int \left(p(\hat{x}, t) - \varepsilon \dfrac{\partial p(\hat{x} | t)}{\partial x} + \dfrac{1}{2} \varepsilon^2 \dfrac{\partial^2 p(\hat{x} |t)}{\partial x^2} + o(\varepsilon^2)\right) \cdot \mathcal{N}(\varepsilon| 0, g^2(t)dt)d\varepsilon = \\[0.5cm]
+        \displaystyle p(\hat{x} | t) \underbrace{\int \mathcal{N}(\varepsilon| 0, g^2(t)dt)d\varepsilon}_{1} - \dfrac{\partial p(\hat{x} | t)}{\partial x} \underbrace{\varepsilon\mathcal{N}(\varepsilon| 0, g^2(t)dt)d\varepsilon}_{\mu = 0} + \\[0.5cm] 
+        \displaystyle + \dfrac{1}{2} \dfrac{\partial^2 p(\hat{x} | t)}{\partial x^2} \underbrace{\int \varepsilon^2 \mathcal{N}(\varepsilon| 0, g^2(t)dt) d\varepsilon}_{\sigma = g^2(t) dt} + \int \underbrace{\varepsilon^2 \cdot o(1) \cdot \mathcal{N}(\varepsilon| 0, g^2(t)dt) d\varepsilon}_{o(1) \cdot g^2(t) dt = o(dt)} =
+        \end{array}
+    \]
+    Упростив последнее выражение, получим:
+    \[
+        = p(\hat{x}|t) + \dfrac{1}{2} \dfrac{\partial^2 p(\hat{x} |t)}{\partial x^2} g^2(t) dt + o(dt).
+    \]
+    Перенесем первое слагаемое налево и поделим обе части на $dt$:
+    \[
+        \dfrac{p(\hat{x} | t + dt) - p(\hat{x} | t)}{dt} = \dfrac{1}{2}\dfrac{\partial^2 p(\hat{x} | t)}{\partial x^2} g^2(t) + o(1)
+    \]
+    При $\lim\limits_{dt \to 0}$:
+    \[
+       \dfrac{\partial p(\hat{x} | t)}{\partial t} = \dfrac{1}{2} \dfrac{\partial^2 p(\hat{x} | t)}{\partial x^2} g^2(t)
+    \]
+    По принципу суперпозиции, получаем доказываемое выражение: 
+    \[
+        \dfrac{\partial p(x|t)}{\partial t} = -\dfrac{\partial }{\partial x} \left(f\left(x,t\right)p(x|t) \right) + \dfrac{1}{2}g^2 (t) \dfrac{\partial^2}{\partial x^2} \left(p(x|t)\right)
+    \]
+\end{proof}
+
+Рассмотрим теперь стохастическое дифференциальное уравнение с $g(t) = 1,\ f(x, t) = \dfrac{1}{2} \dfrac{\partial }{\partial x} \log p(x| t)$. Запишем эволюцию распределения для этого СДУ:
+
+\[
+    \begin{array}{c}
+        \dfrac{\partial p(x| t)}{\partial t} = -\dfrac{\partial}{\partial x} \left(\dfrac{1}{2} \dfrac{\partial }{\partial x} \log p(x | t) p(x|t)\right) + \dfrac{1}{2} \dfrac{\partial^2}{\partial x^2} p(x | t) = \\[0.5cm] 
+        = -\dfrac{\partial }{\partial x} \left(\dfrac{1}{2} \dfrac{1}{p(x|t)} \dfrac{\partial}{\partial x} p(x|t) p(x|t)\right) + \dfrac{1}{2} \dfrac{\partial^2}{\partial x^2} p(x|t) = 0.
+    \end{array}
+\]
+Таким образом, мы показали, что динамика Ланжевена как стохастическая реализация уравнения Фоккера-Планка сохраняет распределение.
+
+
+\newpage
+\phantomsection
+{\NonNumberedSection\section*{ПРИЛОЖЕНИЕ 2}}
+\addcontentsline{toc}{section}{ПРИЛОЖЕНИЕ 2}
+\pagestyle{supplement2}
+
+% \lstinputlisting[language=html]{./code/templates/main_page.html}
+% \lstinputlisting[language=html]{./code/templates/analysis.html}
+% \lstinputlisting[language=css]{./code/static/styles/style.css}
+% \lstinputlisting[language=javascript]{./code/static/scripts/head.js}
+
+% \lstinputlisting{./code/source.txt}

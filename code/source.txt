@@ -1,0 +1,78 @@
+#######################################
+#                                     #
+#          config file                #
+#                                     #
+#######################################
+
+data_path: data/preprocessed
+
+USER_ID_FIELD: user_id
+ITEM_ID_FIELD: item_id
+LABEL_FIELD: label
+
+
+
+load_col: 
+    inter: [user_id, item_id, label, timestamp]
+
+
+metrics: ['Precision', 'Recall', 'NDCG', 'MAP']
+topk: [1, 2, 5, 7, 10]
+
+valid_metric: NDCG@10
+eval_step: 10
+eval_args:
+    split:
+        RS: [0.1, 0.1, 0.1]
+    group_by: user
+    order: TO
+    mode: uni10
+
+log_wandb: False
+
+#######################################
+#                                     #
+#            gru_ext                  #
+#                                     #
+#######################################
+
+train_neg_sample_args: None
+additional_feat_suffix: [newsemb, absemb, clfembb, sumemb]
+# additional_feat_suffix: [newsemb, absemb, clfembb]
+# additional_feat_suffix: [newsemb, absemb]
+# additional_feat_suffix: [newsemb]
+
+
+
+load_col: 
+    inter: [user_id, item_id, label, timestamp]
+    newsemb: [nid, title_emb]
+    absemb: [aid, abstract_emb]
+    clfembb: [cid, clf_emb] 
+    sumemb: [sid, summarization_emb]
+
+
+alias_of_item_id: [nid, aid, cid, sid]
+# alias_of_item_id: [nid, aid, cid]
+# alias_of_item_id: [nid, aid]
+# alias_of_item_id: [nid]
+
+
+
+# score_calc: mean
+# loss_type: BPR
+
+preload_weight:
+    nid: title_emb
+    aid: abstract_emb
+    cid: clf_emb
+    sid: summarization_emb
+
+train_batch_size: 1024
+eval_batch_size: 1024
+
+# train_batch_size: 512
+# eval_batch_size: 512
+hidden_size: 64
+eval_step: 1
+epochs: 10

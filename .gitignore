@@ -3,12 +3,19 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# images/data/outputs
-*.jpeg
-*.png
-*.webp
-*.jpg
-**outputs/
+# LATEX auxiliary files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb*
+*.fls
+*.out
+*.xml
+*.toc
+*.gz
+*.xdv
+
 
 # C extensions
 *.so

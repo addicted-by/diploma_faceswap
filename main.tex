@@ -1,0 +1,54 @@
+\documentclass[oneside,a4paper,14pt,final]{extreport}
+
+\usepackage{essay}
+\usepackage{bigints}
+\usepackage{setspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                 %
+%              declare math operators             %
+%                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% https://tex.stackexchange.com/questions/67506/newcommand-vs-declaremathoperator
+% \DeclareMathOperator{\End}{End}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\sign}{sign}
+\newcommand{\introname}{ВВЕДЕНИЕ}
+\usepackage[font=small]{caption}
+\graphicspath{ {./images/} }
+\addbibresource{./library.bib}
+\begin{document}
+\input{theory/title}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\input{./theory/essay.tex}
+\thispagestyle{empty} % unnumbered page
+
+{\linespread{0.9}\tableofcontents}
+
+\input{./theory/intro.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\CenterChapterHeading\chapter*{ОСНОВНАЯ ЧАСТЬ}
+\addcontentsline{toc}{chapter}{ОСНОВНАЯ ЧАСТЬ}
+\newpage
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{./theory/theory.tex}
+\input{./practice/practice.tex}
+
+\addtocategory{SourcesGOST}{gagar}
+\chapter{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+% \vspace{-1.0cm}
+\begingroup
+\let\clearpage\relax
+\printbibliography[category=SourcesGOST, title=""]
+\vspace{-1.5cm}
+\printbibliography[notcategory=SourcesGOST, title=""]
+\endgroup
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\CenterChapterHeading\chapter*{ПРИЛОЖЕНИЯ}
+\addcontentsline{toc}{chapter}{ПРИЛОЖЕНИЯ}
+\newpage
+}
+\input{./application/application.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
