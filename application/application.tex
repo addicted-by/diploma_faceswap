@@ -4,6 +4,35 @@
 \pagestyle{supplement1}
 \label{AppendixA}
 
+\textbf{Явное выражение для семплирования на произвольном шаге диффузии}
+
+% TODO: Расписать подробнее, если останется время [DONE]
+Рассмотрим выражение \ref{eq:forward_process}. Положим $\alpha_t = 1 - \beta_t$ и $\overline{\alpha}_t = \prod_{s=0}^{t} \alpha_s$. Рекурсивно применяя трюк с репараметризацией:
+\[
+    \begin{array}{c}
+        x_t = \sqrt{1 - \beta_t}x_{t-1} + \sqrt{\beta_t}\epsilon_{t-1} = \sqrt{\alpha_t\alpha_{t-1}}x_{t-2} + \sqrt{1 - \alpha_t\alpha_{t-1}}\epsilon_{t-2} = \ldots \\
+        \ldots = \sqrt{\overline{\alpha}_t} x_0 + \sqrt{1 - \overline{\alpha}_t} \epsilon_0,
+    \end{array}
+\]
+где $\epsilon_{t-1}, \varepsilon_{t-2}, \ldots \sim \mathcal{N}(0, I)$, $\overline{\epsilon}_{t-2}$ смесь нормальных распределений 
+\[
+    \overline{\epsilon}_{t-2} \sim \mathcal{N}(0, \sqrt{(1-\alpha_t) + \alpha_t(1-\alpha_{t-1})}I) = \mathcal{N}(0, \sqrt{1 - \alpha_t\alpha_{t-1}})
+\]
+Обычно по мере зашумления используется больший шаг зашумлений, т.е.:
+\[
+    \begin{array}{c}
+        \beta_1 < \beta_2 < \ldots < \beta_T,\\
+        \overline{\alpha_1} > \overline{\alpha_2} > \ldots > \overline{\alpha_T}.
+    \end{array}  
+\]
+
+\newpage
+\phantomsection
+{\NonNumberedSection\section*{ПРИЛОЖЕНИЕ 2}}
+\addcontentsline{toc}{section}{ПРИЛОЖЕНИЕ 2}
+\pagestyle{supplement2}
+\label{AppendixB}
+
 \textbf{Динамика Ланжевена как стохастическая реализация уравнения Фоккера-Планка}
 
 Рассмотрим стохастическое дифференциальное уравнение (СДУ) в общем виде:
@@ -44,13 +73,13 @@
         \underline{\dfrac{\partial p(\hat{x} | t)}{\partial t} = -\dfrac{\partial }{\partial x} \left(f(\hat{x}, t) p(\hat{x} \ t)\right). }
     \]
 
-    Рассмотрим теперь стохастическую часть. Пусть $\hat{x} = x + \varepsilon$, где $\varepsilon \sim \mathcal{N}(\varepsilon| 0, g^2(t) dt)$:
+    Рассмотрим теперь стохастическую часть. Пусть $\hat{x} = x + \epsilon$, где $\epsilon \sim \mathcal{N}(\epsilon| 0, g^2(t) dt)$:
     \[
         \begin{array}{c}
-        \displaystyle p(\hat{x} | t+dt) = \int p(\hat{x} - \varepsilon| t) \mathcal{N}(\varepsilon | 0, g^2(t)dt) d\varepsilon = \\[0.5cm]
-        \displaystyle \int \left(p(\hat{x}, t) - \varepsilon \dfrac{\partial p(\hat{x} | t)}{\partial x} + \dfrac{1}{2} \varepsilon^2 \dfrac{\partial^2 p(\hat{x} |t)}{\partial x^2} + o(\varepsilon^2)\right) \cdot \mathcal{N}(\varepsilon| 0, g^2(t)dt)d\varepsilon = \\[0.5cm]
-        \displaystyle p(\hat{x} | t) \underbrace{\int \mathcal{N}(\varepsilon| 0, g^2(t)dt)d\varepsilon}_{1} - \dfrac{\partial p(\hat{x} | t)}{\partial x} \underbrace{\varepsilon\mathcal{N}(\varepsilon| 0, g^2(t)dt)d\varepsilon}_{\mu = 0} + \\[0.5cm] 
-        \displaystyle + \dfrac{1}{2} \dfrac{\partial^2 p(\hat{x} | t)}{\partial x^2} \underbrace{\int \varepsilon^2 \mathcal{N}(\varepsilon| 0, g^2(t)dt) d\varepsilon}_{\sigma = g^2(t) dt} + \int \underbrace{\varepsilon^2 \cdot o(1) \cdot \mathcal{N}(\varepsilon| 0, g^2(t)dt) d\varepsilon}_{o(1) \cdot g^2(t) dt = o(dt)} =
+        \displaystyle p(\hat{x} | t+dt) = \int p(\hat{x} - \epsilon| t) \mathcal{N}(\epsilon | 0, g^2(t)dt) d\epsilon = \\[0.5cm]
+        \displaystyle \int \left(p(\hat{x}, t) - \epsilon \dfrac{\partial p(\hat{x} | t)}{\partial x} + \dfrac{1}{2} \epsilon^2 \dfrac{\partial^2 p(\hat{x} |t)}{\partial x^2} + o(\epsilon^2)\right) \cdot \mathcal{N}(\epsilon| 0, g^2(t)dt)d\epsilon = \\[0.5cm]
+        \displaystyle p(\hat{x} | t) \underbrace{\int \mathcal{N}(\epsilon| 0, g^2(t)dt)d\epsilon}_{1} - \dfrac{\partial p(\hat{x} | t)}{\partial x} \underbrace{\epsilon\mathcal{N}(\epsilon| 0, g^2(t)dt)d\epsilon}_{\mu = 0} + \\[0.5cm] 
+        \displaystyle + \dfrac{1}{2} \dfrac{\partial^2 p(\hat{x} | t)}{\partial x^2} \underbrace{\int \epsilon^2 \mathcal{N}(\epsilon| 0, g^2(t)dt) d\epsilon}_{\sigma = g^2(t) dt} + \int \underbrace{\epsilon^2 \cdot o(1) \cdot \mathcal{N}(\epsilon| 0, g^2(t)dt) d\epsilon}_{o(1) \cdot g^2(t) dt = o(dt)} =
         \end{array}
     \]
     Упростив последнее выражение, получим:
@@ -81,12 +110,72 @@
 \]
 Таким образом, мы показали, что динамика Ланжевена как стохастическая реализация уравнения Фоккера-Планка сохраняет распределение.
 
-
 \newpage
 \phantomsection
-{\NonNumberedSection\section*{ПРИЛОЖЕНИЕ 2}}
-\addcontentsline{toc}{section}{ПРИЛОЖЕНИЕ 2}
-\pagestyle{supplement2}
+{\NonNumberedSection\section*{ПРИЛОЖЕНИЕ 3}}
+\addcontentsline{toc}{section}{ПРИЛОЖЕНИЕ 3}
+\pagestyle{supplement3}
+\label{AppendixC}
+
+% TODO: овер херово выглядит, устал формулы писать 
+
+\textbf{Вывод ELBO}
+
+Используя правило Байеса для \ref{eq:controlable_condition}, получим:
+\[
+    \begin{aligned}
+        &q(x_{t-1} | x_t, x_0) = q(x_t | x_{t-1}, x_0) \dfrac{ q(x_{t-1} | x_0) }{ q(x_t | x_0) } = \\
+        &\propto \exp \left(-\dfrac{1}{2} \left(\dfrac{(x_t - \sqrt{\alpha_t} x_{t-1})^2}{\beta_t} + \dfrac{(x_{t-1} - \sqrt{\bar{\alpha}_{t-1}} x_0)^2}{1-\bar{\alpha}_{t-1}} - \dfrac{(x_t - \sqrt{\bar{\alpha}_t} x_0)^2}{1-\bar{\alpha}_t} \right) \right) = \\
+        &= \exp \left(-\dfrac{1}{2} \left(\dfrac{x_t^2 - 2\sqrt{\alpha_t} x_t x_{t-1} + \alpha_t x_{t-1}^2 }{\beta_t} + \dfrac{ x_{t-1}^2 - 2 \sqrt{\bar{\alpha}_{t-1}} x_0 x_{t-1} + \bar{\alpha}_{t-1} x_0^2 }{1-\bar{\alpha}_{t-1}} - \dfrac{(x_t - \sqrt{\bar{\alpha}_t} x_0)^2}{1-\bar{\alpha}_t} \right) \right) = \\
+        &= \exp\left( -\dfrac{1}{2} \left(\dfrac{\alpha_t}{\beta_t} + \dfrac{1}{1 - \bar{\alpha}_{t-1}}) x_{t-1}^2 - (\dfrac{2\sqrt{\alpha_t}}{\beta_t} x_t + \dfrac{2\sqrt{\bar{\alpha}_{t-1}}}{1 - \bar{\alpha}_{t-1}} x_0) x_{t-1} + C(x_t, x_0) \right) \right)
+    \end{aligned}
+\]
+
+\par
+Среднее значение и дисперсия могут быть параметризованы следующим образом
+\[
+    \tilde{\beta}_t = 1/\left(\dfrac{\alpha_t}{\beta_t} + \dfrac{1}{1 - \bar{\alpha}_{t-1}}\right) = \dfrac{1}{\left(\dfrac{\alpha_t - \bar{\alpha}_t + \beta_t}{\beta_t(1 - \bar{\alpha}_{t-1})}\right)} = \dfrac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \cdot \beta_t
+\]
+
+
+\[
+    \begin{aligned}
+    \tilde{\tilde{\mu}}_t (x_t, x_0) = \dfrac{\left(\dfrac{\sqrt{\alpha_t}}{\beta_t} x_t + \dfrac{\sqrt{\bar{\alpha}_{t-1}}}{1 - \bar{\alpha}_{t-1}} x_0\right)}{\left(\dfrac{\alpha_t}{\beta_t} + \dfrac{1}{1 - \bar{\alpha}_{t-1}}\right)} = \left(\dfrac{\sqrt{\alpha_t}}{\beta_t} x_t + \dfrac{\sqrt{\bar{\alpha}_{t-1}}}{1 - \bar{\alpha}_{t-1}} x_0\right) \dfrac{1 - \bar{\alpha}_{t-1}}{1 - \bar{\alpha}_t} \cdot \beta_t  =\\[0.5cm]
+    = \dfrac{\sqrt{\alpha_t}(1 - \bar{\alpha}_{t-1})}{1 - \bar{\alpha}_t} x_t + \dfrac{\sqrt{\bar{\alpha}_{t-1}}\beta_t}{1 - \bar{\alpha}_t} x_0
+    \end{aligned}
+\]
+
+Подставим в это выражение $x_0 = \dfrac{1}{\sqrt{\overline{\alpha}_t}} (x_t - \sqrt{1 - \overline{\alpha}_t\epsilon_t})$:
+\[
+    \tilde{{\mu}}_t = \frac{\sqrt{\alpha_t}(1 - \bar{\alpha}_{t-1})}{1 - \bar{\alpha}_t} x_t + \frac{\sqrt{\bar{\alpha}_{t-1}}\beta_t}{1 - \bar{\alpha}_t} \frac{1}{\sqrt{\bar{\alpha}_t}}(x_t - \sqrt{1 - \bar{\alpha}_t}{\epsilon}_t) = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1 - \alpha_t}{\sqrt{1 - \bar{\alpha}_t}} {\epsilon}_t \right)
+\]
+Запишем наконец нижнюю вариационную границу (ELBO):
+\[
+\begin{aligned}
+- \log p_\theta(x_0) 
+&\leq - \log p_\theta(x_0) + D_\text{KL}(q(x_{1:T}|x_0) \| p_\theta(x_{1:T}|x_0) ) \\
+&= -\log p_\theta(x_0) + \mathbb{E}_{x_{1:T}\sim q(x_{1:T} | x_0)} \Big[ \log\frac{q(x_{1:T}|x_0)}{p_\theta(x_{0:T}) / p_\theta(x_0)} \Big] \\
+&= -\log p_\theta(x_0) + \mathbb{E}_q \Big[ \log\frac{q(x_{1:T}|x_0)}{p_\theta(x_{0:T})} + \log p_\theta(x_0) \Big] \\
+&= \mathbb{E}_q \Big[ \log \frac{q(x_{1:T}|x_0)}{p_\theta(x_{0:T})} \Big] \\
+\text{Let }L_\text{VLB} 
+&= \mathbb{E}_{q(x_{0:T})} \Big[ \log \frac{q(x_{1:T}|x_0)}{p_\theta(x_{0:T})} \Big] \geq - \mathbb{E}_{q(x_0)} \log p_\theta(x_0)
+\end{aligned}
+\]
+
+% TODO: если будут силы, то из статьи взять выкладки
+Финалочка: переписываем этот весь треш в комбинацию нескольких KL-дивергенций и энтропии
+\[
+\begin{aligned}
+    L_\text{VLB} = &\mathbb{E}_{q(x_{0:T})} \Big[ \log\dfrac{q(x_{1:T}|x_0)}{p_\theta(x_{0:T})} \Big] = \mathbb{E}_q \Big[ \log\dfrac{\prod_{t=1}^T q(x_t|x_{t-1})}{ p_\theta(x_T) \prod_{t=1}^T p_\theta(x_{t-1} |x_t) } \Big] = \\
+    &= \mathbb{E}_q \Big[ -\log p_\theta(x_T) + \sum_{t=1}^T \log \dfrac{q(x_t|x_{t-1})}{p_\theta(x_{t-1} |x_t)} \Big] = \\
+    &= \mathbb{E}_q \Big[ -\log p_\theta(x_T) + \sum_{t=2}^T \log \dfrac{q(x_t|x_{t-1})}{p_\theta(x_{t-1} |x_t)} + \log\dfrac{q(x_1 | x_0)}{p_\theta(x_0 | x_1)} \Big] = \\
+    &= \mathbb{E}_q \Big[ -\log p_\theta(x_T) + \sum_{t=2}^T \log \Big( \dfrac{q(x_{t-1} | x_t, x_0)}{p_\theta(x_{t-1} |x_t)}\cdot \dfrac{q(x_t | x_0)}{q(x_{t-1}|x_0)} \Big) + \log \dfrac{q(x_1 | x_0)}{p_\theta(x_0 | x_1)} \Big] = \\
+    &= \mathbb{E}_q \Big[ -\log p_\theta(x_T) + \sum_{t=2}^T \log \dfrac{q(x_{t-1} | x_t, x_0)}{p_\theta(x_{t-1} |x_t)} + \sum_{t=2}^T \log \dfrac{q(x_t | x_0)}{q(x_{t-1} | x_0)} + \log\dfrac{q(x_1 | x_0)}{p_\theta(x_0 | x_1)} \Big] = \\
+    &= \mathbb{E}_q \Big[ -\log p_\theta(x_T) + \sum_{t=2}^T \log \dfrac{q(x_{t-1} | x_t, x_0)}{p_\theta(x_{t-1} |x_t)} + \log\dfrac{q(x_T | x_0)}{q(x_1 | x_0)} + \log \dfrac{q(x_1 | x_0)}{p_\theta(x_0 | x_1)} \Big] =\\
+    &= \mathbb{E}_q \Big[ \log\dfrac{q(x_T | x_0)}{p_\theta(x_T)} + \sum_{t=2}^T \log \dfrac{q(x_{t-1} | x_t, x_0)}{p_\theta(x_{t-1} |x_t)} - \log p_\theta(x_0 | x_1) \Big] = \\
+    &= \mathbb{E}_q [\underbrace{D_\text{KL}(q(x_T | x_0) \parallel p_\theta(x_T))}_{L_T} + \sum_{t=2}^T \underbrace{D_\text{KL}(q(x_{t-1} | x_t, x_0) \parallel p_\theta(x_{t-1} |x_t))}_{L_{t-1}} \underbrace{- \log p_\theta(x_0 | x_1)}_{L_0} ]
+\end{aligned}
+\]
 
 % \lstinputlisting[language=html]{./code/templates/main_page.html}
 % \lstinputlisting[language=html]{./code/templates/analysis.html}

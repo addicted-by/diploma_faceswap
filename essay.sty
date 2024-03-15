@@ -65,6 +65,10 @@
 \fancyhf{}
 \rhead{\thepage\\Приложение 2}}
 
+\fancypagestyle{supplement3}{
+\fancyhf{}
+\rhead{\thepage\\Приложение 3}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                 %
 %                   TOC styling                   %
@@ -263,7 +267,7 @@
 \numberwithin{figure}{section}
 \numberwithin{equation}{section}
 \numberwithin{table}{section}
-
+\renewcommand{\theequation}{\arabic{equation}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                 %
 %                      bibtex                     %
