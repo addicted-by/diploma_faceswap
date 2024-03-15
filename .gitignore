@@ -3,12 +3,27 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# images/data/outputs
+# images/data/outputs/checkpoints
 *.jpeg
 *.png
 *.webp
 *.jpg
 **outputs/
+*checkpoints/
+*mnist
+*my-dreambooth
+# Src
+*env_cfg/src
+*results/
+*checkpoints/*
+*keys/*
+*temp/*
+*docs
+*.gz
+.zip
+# models from metrics
+*eval/models/ 
+
 
 # C extensions
 *.so
