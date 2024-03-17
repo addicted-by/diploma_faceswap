@@ -110,14 +110,42 @@
 \subsubsection{Обуславливаемые диффузионные модели (Conditioned diffusion models)}
 \par
 
-В статье \cite{rombach2022highresolution} предлагается модель латентной диффузии. Авторы представляют процесс диффузии не в пространстве пикселей, а в пространстве латентных эмбеддингов, полученных с помощью автоэнкодера (VQ-VAE). Авторы обнаружили, что даже агрессивная компрессия сохраняет семантическую и концептуальную информацию \ref{fig:image-distortion-rate}. Поэтому они сначала убирают избыточность (компрессируют) с помощью автоэнкодера, а затем манипулируют/генерируют семантические понятия с помощью процесса диффузии на выученном латентном уровне. Энкодер $\mathcal{E}$ используется для компрессии входных изображений в латентные эмбеддинги: $z = \mathcal{E}(x^{H\times W\times 3}) \in \mathbb{R}^{h\times w\times c}$
+В статье \cite{rombach2022highresolution} предлагается модель латентной диффузии. Авторы представляют процесс диффузии не в пространстве пикселей, а в пространстве латентных эмбеддингов, полученных с помощью автоэнкодера (VQ-VAE). Авторы обнаружили, что даже агрессивная компрессия сохраняет семантическую и концептуальную информацию \ref{fig:image-distortion-rate}. Поэтому они сначала убирают избыточность (компрессируют) с помощью автоэнкодера, а затем манипулируют/генерируют семантические понятия с помощью процесса диффузии на выученном латентном уровне. Энкодер $\mathcal{E}$ используется для компрессии входных изображений в латентные эмбеддинги: $z = \mathcal{E}(x^{H\times W\times 3}) \in \mathbb{R}^{h\times w\times c}$. Затем для реконструкции из латентного пространства используется декодер $\mathcal{D}:\ \hat{x} = \mathcal{D}(z)$.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.4]{image-distortion-rate.png}
-    \caption{Trade-off между сжатием и искажениями \cite{rombach2022highresolution}}
+    \caption{Trade-off между сжатием и соответствующими искажениями \cite{rombach2022highresolution}}
     \label{fig:image-distortion-rate}
 \end{figure} 
 
+В статье предлагается два типа регуляризации в обучении автоэнкодера чтобы избежать высокой дисперсии в латентном пространстве:
+\begin{itemize}
+    \item $KL$-регуляризация, взятая из идеи VAE \cite{Kingma_2019}, штраф за $KL$ дивергенцию между распределением в латентном пространстве и стандартным нормальном распределением.
+    \item $VQ$-регуляризация, взятая из идеи VQVAE \cite{oord2018neural}, использующая векторную квантизацию внутри декодера.
+\end{itemize}
+
+\par
+Прямой и обратный процессы диффузии происходят в латентном представлении $z$. Архитектурой была выбрана $U-Net$, обусловленная по шагу диффузии с добавлением механизма перекрестного внимания, который позволяет обуславливать генерацию под разный тип данных (метки классов, low-pass изображения, текстовые запросы). 
+\[
+    \begin{aligned}
+    &\text{Attention}(Q, K, V) = \text{softmax}\Big(\frac{QK^\top}{\sqrt{d}}\Big) \cdot V \\
+    &\text{where }Q = W^{(i)}_Q \cdot \varphi_i(z_i),\;
+    K = W^{(i)}_K \cdot \tau_\theta(y),\;
+    V = W^{(i)}_V \cdot \tau_\theta(y) \\
+    &\text{and }
+    W^{(i)}_Q \in \mathbb{R}^{d \times d^i_\epsilon},\;
+    W^{(i)}_K, W^{(i)}_V \in \mathbb{R}^{d \times d_\tau},\;
+    \varphi_i(z_i) \in \mathbb{R}^{N \times d^i_\epsilon},\;
+    \tau_\theta(y) \in \mathbb{R}^{M \times d_\tau}
+    \end{aligned}
+\]
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{latent-diffusion-arch.png}
+    \caption{U-Net архитектура с перекрестным вниманием}
+    \label{fig:latent-diffusion-arch}
+\end{figure} 
 % ! дописать
 В \cite{ruiz2023dreambooth} предлагается использование концептов. 
 
@@ -130,3 +158,23 @@
 \subsubsection{Задача замены лиц (Face swap)}
 
 \par
+В статье \cite{li2020faceshifter} авторы предлагают двухступенчатую архитектуру для решения поставленной задачи. Авторы утилизируют идею генеративно-состязательных сетей, на первом этапе генерирует изображение с помощью адаптивного внедрения признаков из целевого изображения. Генератор в модели основывается на AAD (Adaptive Attentional Denormalization) слоях. На втором этапе модель решает проблему появления артифактов и нереалистичных частей на изображении в self-supervised режиме.  
+
+\begin{itemize}
+    \item AEI-Net (Генерация целевого лица):
+    
+    AEI-Net состоит из энкодера личности (Identity Encoder), многоуровневого энкодера атрибутов (Multi-level Attributes Encoder) и генератора (AAD-Generator). AAD-Generator интегрирует информацию о личности и атрибутах на нескольких уровнях с помощью блоков AAD ResBlks. Такие блоки основываются на AAD слоях.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.2]{first_step_faceshifter.png}
+        \caption{Первый этап FaceShifter \cite{li2020faceshifter}}
+        \label{fig:first_step_faceshifter}
+    \end{figure} 
+    \item HEAR-Net (Избавление от возможных артефактов)
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.4]{second_step_faceshifter.png}
+        \caption{Второй этап FaceShifter \cite{li2020faceshifter}}
+        \label{fig:second_step_faceshifter}
+    \end{figure}
+\end{itemize}
