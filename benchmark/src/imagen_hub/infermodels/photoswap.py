@@ -83,10 +83,11 @@ class PhotoSwap():
             src_subject_word (str): New source subject word.
             target_subject_word (str): New target subject word.
         """
-        print(weight)
-        self.pipe = StableDiffusionPipeline.from_pretrained(
-            weight
-        ).to(self.device)
+        import os
+        print(os.listdir())
+        print("WEIGHT: ", weight)
+        print(os.listdir(weight))
+        self.pipe = StableDiffusionPipeline.from_pretrained(weight).to(self.device)
         self.pipe.scheduler = DDIMScheduler(
             beta_start=0.00085, beta_end=0.012, beta_schedule="scaled_linear", clip_sample=False, set_alpha_to_one=False)
         self.src_subject_word = src_subject_word

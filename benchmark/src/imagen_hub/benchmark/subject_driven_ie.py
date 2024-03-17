@@ -89,7 +89,7 @@ def infer_subject_driven_ie_bench(model,
                 (512, 512), Image.LANCZOS)
 
             if isinstance(model, infermodels.PhotoSwap):
-                model.load_new_subject_weight(os.path.join("checkpoints", "DreamBooth-Models", subject),
+                model.load_new_subject_weight(os.path.join("checkpoints", "ImagenHub_Subject-Driven_IE", "DreamBooth-Models", subject),
                                               subject,
                                               special_token)
                 output = model.infer_one_image(src_image=sample_input,
