@@ -6,7 +6,7 @@ from diffusers import StableDiffusionPipeline, DDIMScheduler
 class Prompt2prompt():
     """
     A class for Prompt-to-Prompt.
-    
+
     References: https://github.com/google/prompt-to-prompt/blob/main/null_text_w_ptp.ipynb
     """
 

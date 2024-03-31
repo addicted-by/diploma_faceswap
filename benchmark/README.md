@@ -1,4 +1,4 @@
-# 🖼️ ImagenHub 
+# 🖼️ ImagenHub
 [![arXiv](https://img.shields.io/badge/arXiv-2310.01596-b31b1b.svg)](https://arxiv.org/abs/2310.01596)
 [![Docs](https://img.shields.io/badge/docs-latest-blue)](https://imagenhub.readthedocs.io/en/latest/)
 [![contributors](https://img.shields.io/github/contributors/TIGER-AI-Lab/ImagenHub)](https://github.com/TIGER-AI-Lab/ImagenHub/graphs/contributors)
@@ -6,7 +6,7 @@
 [![pull requests](https://img.shields.io/github/issues-pr/TIGER-AI-Lab/ImagenHub?color=0088ff)](https://github.com/TIGER-AI-Lab/ImagenHub/pulls)
 [![license](https://img.shields.io/github/license/TIGER-AI-Lab/ImagenHub.svg)](https://github.com/TIGER-AI-Lab/ImagenHub/blob/main/LICENSE)
 
-ImagenHub: Standardizing the evaluation of conditional image generation models 
+ImagenHub: Standardizing the evaluation of conditional image generation models
 <br>
 ICLR 2024
 
@@ -16,9 +16,9 @@ ICLR 2024
 
 
 ImagenHub is a one-stop library to standardize the inference and evaluation of all the conditional image generation models.
-* We define 7 prominent tasks and curate 7 high-quality evaluation datasets for each task. 
+* We define 7 prominent tasks and curate 7 high-quality evaluation datasets for each task.
 * We built a unified inference pipeline to ensure fair comparison. We currently support around 30 models.
-* We designed two human evaluation scores, i.e. Semantic Consistency and Perceptual Quality, along with comprehensive guidelines to evaluate generated images. 
+* We designed two human evaluation scores, i.e. Semantic Consistency and Perceptual Quality, along with comprehensive guidelines to evaluate generated images.
 * We provide code for visualization, autometrics and Amazon mechanical turk templates.
 
 <div align="center">
@@ -26,8 +26,8 @@ ImagenHub is a one-stop library to standardize the inference and evaluation of a
 </div>
 
 ## 📰 News
-* 2024 Feb 14: Checkout [⚔️ GenAI-Arena ⚔️ : Benchmarking Visual Generative Models in the Wild](https://huggingface.co/spaces/TIGER-Lab/GenAI-Arena)! 
-* 2024 Jan 15: Paper accepted to ICLR 2024! See you in Vienna! 
+* 2024 Feb 14: Checkout [⚔️ GenAI-Arena ⚔️ : Benchmarking Visual Generative Models in the Wild](https://huggingface.co/spaces/TIGER-Lab/GenAI-Arena)!
+* 2024 Jan 15: Paper accepted to ICLR 2024! See you in Vienna!
 * 2024 Jan 7: We updated [Human Evaluation Guideline](https://imagenhub.readthedocs.io/en/latest/Guidelines/humaneval.html), [ImagenMuseum Submission](https://imagenhub.readthedocs.io/en/latest/Guidelines/imagenmuseum.html)! Now we welcome researchers to submit their method on ImagenMuseum with minimal effort.
 * 2023 Oct 23: Version 0.1.0 released! [ImagenHub’s documentation](https://imagenhub.readthedocs.io/en/latest/index.html) now available!
 * 2023 Oct 19: Code Released. Docs under construction.
@@ -130,7 +130,7 @@ The tutorials and API documentation are hosted on [imagenhub.readthedocs.io](htt
 By streamlining research and collaboration, ImageHub plays a pivotal role in propelling the field of Image Generation and Editing.
 
 * Purity of Evaluation: We ensure a fair and consistent evaluation for all models, eliminating biases.
-* Research Roadmap: By defining tasks and curating datasets, we provide clear direction for researchers. 
+* Research Roadmap: By defining tasks and curating datasets, we provide clear direction for researchers.
 * Open Collaboration: Our platform fosters the exchange and cooperation of related technologies, bringing together minds and innovations.
 
 ### Implemented Models
@@ -184,7 +184,7 @@ We included more than 30 Models in image synthesis. See the full list here:
 ### For the Community
 _**Community contributions are encouraged!**_
 
-ImagenHub is still under development. More models and features are going to be added and we always welcome contributions to help make ImagenHub better. If you would like to contribute, please check out [CONTRIBUTING.md](CONTRIBUTING.md). 
+ImagenHub is still under development. More models and features are going to be added and we always welcome contributions to help make ImagenHub better. If you would like to contribute, please check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
 We believe that everyone can contribute and make a difference. Whether it's writing code 💻, fixing bugs 🐛, or simply sharing feedback 💬, your contributions are definitely welcome and appreciated 🙌
 
@@ -231,4 +231,3 @@ This project is released under the [License](LICENSE).
 ## ⭐ Star History [🔝](#-table-of-contents)
 
 [![Star History Chart](https://api.star-history.com/svg?repos=TIGER-AI-Lab/ImagenHub&type=Date)](https://star-history.com/#TIGER-AI-Lab/ImagenHub&Date)
-

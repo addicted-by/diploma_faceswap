@@ -850,7 +850,9 @@ def main(args):
     logging_dir = Path(args.output_dir, args.logging_dir)
 
     accelerator_project_config = ProjectConfiguration(project_dir=args.output_dir, logging_dir=logging_dir)
+    print("Project configured")
     kwargs = DistributedDataParallelKwargs(find_unused_parameters=True)
+    print("kwargs were configured")
     accelerator = Accelerator(
         gradient_accumulation_steps=args.gradient_accumulation_steps,
         mixed_precision=args.mixed_precision,
@@ -858,6 +860,8 @@ def main(args):
         project_config=accelerator_project_config,
         kwargs_handlers=[kwargs],
     )
+
+    print("Accelerator was configured")
 
     if args.report_to == "wandb":
         if not is_wandb_available():
@@ -881,6 +885,8 @@ def main(args):
     # If passed along, set the training seed now.
     if args.seed is not None:
         set_seed(args.seed)
+
+    print("GENERATING CLASS IMAGES")
 
     # Generate class images if prior preservation is enabled.
     if args.with_prior_preservation:
@@ -997,6 +1003,7 @@ def main(args):
     elif accelerator.mixed_precision == "bf16":
         weight_dtype = torch.bfloat16
 
+    print("MOVING TO DEVICE...")
     # Move unet, vae and text_encoder to device and cast to weight_dtype
     unet.to(accelerator.device, dtype=weight_dtype)
 
@@ -1005,6 +1012,8 @@ def main(args):
 
     text_encoder_one.to(accelerator.device, dtype=weight_dtype)
     text_encoder_two.to(accelerator.device, dtype=weight_dtype)
+
+    print("MOVED")
 
     if args.enable_xformers_memory_efficient_attention:
         if is_xformers_available():
@@ -1035,6 +1044,7 @@ def main(args):
     )
     unet.add_adapter(unet_lora_config)
 
+    print("LORA INITIALIZED")
     # The text encoder comes from 🤗 transformers, so we cannot directly modify it.
     # So, instead, we monkey-patch the forward calls of its attention-blocks.
     if args.train_text_encoder:

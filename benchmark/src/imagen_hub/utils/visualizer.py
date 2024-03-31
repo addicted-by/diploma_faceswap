@@ -22,7 +22,7 @@ def gather_outputs(result_folder_path: Union[str, os.PathLike], look_up_images: 
 
     Note:
         This function expects a specific structure for the result_folder_path. If the structure is not adhered to, unexpected behavior might occur.
-        
+
     """
     #   Sphinx says unexpected unindent
     #

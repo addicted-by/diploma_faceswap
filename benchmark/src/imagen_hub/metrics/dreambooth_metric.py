@@ -28,11 +28,11 @@ class MetricDINO():
 class MetricCLIP_I():
     """
     A metric class for evaluating images using the CLIP Image algorithm.
-    
+
     Attributes:
         model (torch.nn.Module): The CLIP Image model used for evaluation.
         device (str): The device on which the model should run.
-    
+
     Methods:
         evaluate(real_image: Image.Image, generated_image: Image.Image) -> float:
             Computes the CLIP-I score between a real and a generated image.
@@ -51,11 +51,11 @@ class MetricCLIP_I():
 class MetricCLIP_T():
     """
     A metric class for evaluating images with respect to text using the CLIP Text algorithm.
-    
+
     Attributes:
         model (torch.nn.Module): The CLIP Text model used for evaluation.
         device (str): The device on which the model should run.
-    
+
     Methods:
         evaluate(generated_image: Image.Image, text: str) -> float:
             Computes the CLIP-T score between a generated image and its associated text.
@@ -78,7 +78,7 @@ def compute_cosine_distance(image_features, image_features2):
     Args:
         image_features (np.ndarray): The feature vector of the first image.
         image_features2 (np.ndarray): The feature vector of the second image.
-    
+
     Returns:
         float: The cosine similarity between the two feature vectors.
     """
@@ -94,7 +94,7 @@ def compute_l2_distance(image_features, image_features2):
     Args:
         image_features (np.ndarray): The feature vector of the first image.
         image_features2 (np.ndarray): The feature vector of the second image.
-    
+
     Returns:
         float: The L2 distance between the two feature vectors.
     """
@@ -103,13 +103,13 @@ def compute_l2_distance(image_features, image_features2):
 def evaluate_dino_score(real_image, generated_image, fidelity_model, device):
     """
     Evaluates the similarity between a real image and a generated image using the DINO algorithm.
-    
+
     Args:
         real_image (Image.Image): The real image.
         generated_image (Image.Image): The generated image.
         fidelity_model (torch.nn.Module): The DINO model used for evaluation.
         device (str): The device on which the model runs.
-    
+
     Returns:
         float: The computed DINO score between the two images.
     """

@@ -24,7 +24,7 @@ def dump_dataset_info(your_dataset,
         filename_wo_ext (Union[str, os.PathLike]): Filename for the saved json file without its extension.
 
     Example::
-    
+
         def process_uid(sample):
             imd_id = sample['img_id']
             turn_index = sample['turn_index']

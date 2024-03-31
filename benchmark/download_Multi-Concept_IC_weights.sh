@@ -21,4 +21,3 @@ git lfs install
 git clone https://huggingface.co/ImagenHub/ImagenHub_Multi-Concept_IC
 
 echo "Downloaded Multi-Concept_IC to checkpoints."
-

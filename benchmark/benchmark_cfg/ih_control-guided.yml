@@ -8,7 +8,7 @@
 # 6 for Text-Guided Image Generation
 
 info:
-  task_id: 2 # id to determine which benchmark to run for now; 
+  task_id: 2 # id to determine which benchmark to run for now;
   running_models: [
       "ControlNet",
       "UniControl",

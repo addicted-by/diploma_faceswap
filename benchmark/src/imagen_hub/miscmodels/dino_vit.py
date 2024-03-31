@@ -9,7 +9,7 @@ class VITs16():
     def __init__(self, device="cuda"):
         """
         Initialize a VITs16 object with the specified device.
-        
+
         Args:
             device (str, optional): The device on which the model will run. Defaults to "cuda".
         """
@@ -20,7 +20,7 @@ class VITs16():
     def get_transform(self):
         """
         Returns the preprocessing transforms for the images.
-        
+
         Returns:
             torchvision.transforms.Compose: Preprocessing transforms.
         """
@@ -35,10 +35,10 @@ class VITs16():
     def get_embeddings(self, tensor_image):
         """
         Get the final embeddings of the image using the ViT-S16 model.
-        
+
         Args:
             tensor_image (torch.Tensor): Image tensor of shape [B, 3, H, W].
-            
+
         Returns:
             torch.Tensor: Final embeddings tensor.
         """
@@ -48,12 +48,12 @@ class VITs16():
     def get_embeddings_intermediate(self, tensor_image, n_last_block=4):
         """
         Get the intermediate embeddings of the image using the ViT-S16 model.
-        
+
         Args:
             tensor_image (torch.Tensor): Image tensor of shape [B, 3, H, W].
-            n_last_block (int, optional): Number of last blocks to consider for intermediate embeddings. 
+            n_last_block (int, optional): Number of last blocks to consider for intermediate embeddings.
                                           Defaults to 4.
-            
+
         Returns:
             torch.Tensor: Intermediate embeddings tensor.
         """

@@ -57,7 +57,7 @@ class Prompt2promptPipeline():
                                      self_replace_steps=self_replace_steps,
                                      blend_words=blend_word, equilizer_params=eq_params)
         return controller
-    
+
     def null_text_inverion(self, src_image, src_prompt):
         """
         Inverts a real image to its latent representation using the provided prompt.

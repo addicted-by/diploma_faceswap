@@ -172,7 +172,7 @@ class SDXLTurbo():
         generator = torch.manual_seed(seed)
         image = self.pipe(
             prompt=prompt,
-            num_inference_steps=1, 
+            num_inference_steps=1,
             guidance_scale=0.0,
             generator=generator,
         ).images[0]

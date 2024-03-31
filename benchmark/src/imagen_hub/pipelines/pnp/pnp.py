@@ -54,11 +54,11 @@ class PNPPipeline(nn.Module):
     def generate(self, PIL_image, prompt, negative_prompt="", pnp_f_t=0.8, pnp_attn_t=0.5, seed=42, pt_path=os.path.join("temp", "pnp", f"latents")):
         seed_everything(seed)
         self.pt_path = pt_path
-        
+
         #clear out old latents
         for f in glob.glob(os.path.join(pt_path, "noisy_latents_*.pt")):
             os.remove(f)
-        
+
         self.image, self.eps = self.set_image(PIL_image, pt_path)
 
         self.text_embeds = self.get_text_embeds(prompt, negative_prompt)
@@ -66,7 +66,7 @@ class PNPPipeline(nn.Module):
 
         pnp_f_t = int(self.steps * pnp_f_t)
         pnp_attn_t = int(self.steps * pnp_attn_t)
-        
+
         # Override the default UNet transformers blocks with the ones that support PnP
         self.init_pnp(conv_injection_t=pnp_f_t, qk_injection_t=pnp_attn_t)
 
@@ -79,7 +79,7 @@ class PNPPipeline(nn.Module):
         # do inversion
         toy_scheduler = DDIMScheduler.from_pretrained(self.model_key, subfolder="scheduler")
         toy_scheduler.set_timesteps(1000)
-        timesteps_to_save, num_inference_steps = get_timesteps(toy_scheduler, 
+        timesteps_to_save, num_inference_steps = get_timesteps(toy_scheduler,
                                                                 num_inference_steps=1000,
                                                                 strength=1.0,
                                                                 device=self.device)

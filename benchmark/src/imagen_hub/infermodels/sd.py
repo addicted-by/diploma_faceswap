@@ -128,16 +128,16 @@ class LCM():
 
         Returns:
             PIL.Image.Image: The inferred image.
-        
+
         Notes:
             num_inference_steps can be set to 1~50 steps. LCM support fast inference even <= 4 steps.
             (Max)I personally found 8 steps give a better result but the paper focus on using 4 steps.
         """
         generator = torch.manual_seed(seed)
-        images = self.pipe(prompt=prompt, 
-                            num_inference_steps=num_inference_steps, 
-                            guidance_scale=8.0, 
-                            lcm_origin_steps=50, 
+        images = self.pipe(prompt=prompt,
+                            num_inference_steps=num_inference_steps,
+                            guidance_scale=8.0,
+                            lcm_origin_steps=50,
                             generator=generator,
                             output_type="pil").images
         return images[0]
@@ -168,7 +168,7 @@ class PlayGroundV2(SD):
         generator = torch.manual_seed(seed)
         image = self.pipe(
             prompt=prompt,
-            generator=generator, 
+            generator=generator,
             guidance_scale=3.0,
         ).images[0]
         return image
@@ -177,7 +177,7 @@ class StableCascade(SD):
     def __init__(self, device="cuda", weight="stabilityai/stable-cascade"):
         """
         A class for the stable cascade image generation model.
-        Require a special version of diffusers 
+        Require a special version of diffusers
         pip install git+https://github.com/kashif/diffusers.git@a3dc21385b7386beb3dab3a9845962ede6765887 --force
 
         Args:

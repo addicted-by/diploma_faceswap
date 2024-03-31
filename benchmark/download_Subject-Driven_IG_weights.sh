@@ -21,4 +21,3 @@ git lfs install
 git clone https://huggingface.co/ImagenHub/ImagenHub_Subject-Driven_IG
 
 echo "Downloaded Subject-Driven_IG to checkpoints."
-

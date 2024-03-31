@@ -9,7 +9,7 @@ class CLIP():
     def __init__(self, device="cuda"):
         """
         Initialize a CLIP object with the specified device.
-        
+
         Args:
             device (str, optional): The device on which the model will run. Defaults to "cuda".
         """
@@ -20,7 +20,7 @@ class CLIP():
     def get_transform(self):
         """
         Returns the preprocessing transforms.
-        
+
         Returns:
             torchvision.transforms.Compose: Preprocessing transforms.
         """
@@ -29,10 +29,10 @@ class CLIP():
     def encode_image(self, tensor_image):
         """
         Encode the provided tensor image into a feature tensor.
-        
+
         Args:
             tensor_image (torch.Tensor): Image tensor of shape [B, 3, H, W].
-            
+
         Returns:
             torch.Tensor: Encoded image tensor.
         """
@@ -42,10 +42,10 @@ class CLIP():
     def encode_text(self, prompt):
         """
         Encode the provided text into a feature tensor.
-        
+
         Args:
             prompt (str): The text to encode.
-            
+
         Returns:
             torch.Tensor: Encoded text tensor.
         """

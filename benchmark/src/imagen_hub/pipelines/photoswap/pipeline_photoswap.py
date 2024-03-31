@@ -47,7 +47,7 @@ class PhotoswapPipeline():
 
         Returns:
             AttentionSwap: Instance of the AttentionSwap class.
-        
+
         Raises:
             AssertionError: If the sum of self_output_replace_steps and self_map_replace_steps is greater than 1.0.
 

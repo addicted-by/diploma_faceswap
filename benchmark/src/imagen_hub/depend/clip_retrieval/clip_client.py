@@ -67,8 +67,8 @@ class ClipClient:
             image: base64 string of image to be searched semantically
 
         Returns:
-            List of dictionaries 
-            
+            List of dictionaries
+
         """
 
         #   Sphinx says unexpected unindent
@@ -82,7 +82,7 @@ class ClipClient:
         #        },
         #        ...
         #    ]
-        
+
         if text and image:
             raise ValueError("Only one of text or image can be provided.")
         if text:

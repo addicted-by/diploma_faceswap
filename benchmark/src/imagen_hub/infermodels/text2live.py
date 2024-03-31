@@ -8,7 +8,7 @@ class Text2Live():
     """
     def __init__(self, device="cuda"):
         from imagen_hub.pipelines.text2live import Text2LivePipeline
-        
+
         self.pipe = Text2LivePipeline(device=device)
 
     def infer_one_image(self, src_image: PIL.Image.Image = None, src_prompt: str = None, target_prompt: str = None, instruct_prompt: str = None, screen_text: str =None, epoch=50, seed=42):

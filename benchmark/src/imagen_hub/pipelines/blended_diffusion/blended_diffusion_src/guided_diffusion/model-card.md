@@ -18,7 +18,7 @@ Here, we describe characteristics of these datasets which impact model behavior:
  * Each of the three classes we consider contain over a million images.
  * The dataset creators found that the label accuracy was roughly 90% across the entire LSUN dataset when measured by trained experts.
  * Images are scraped from the internet, and LSUN cat images in particular tend to often follow a “meme” format.
- * We found that there are occasionally humans in these photos, including faces, especially within the cat class.  
+ * We found that there are occasionally humans in these photos, including faces, especially within the cat class.
 
 **ILSVRC 2012 subset of ImageNet**: This dataset was curated in 2012 and consists of roughly one million images, each belonging to one of 1000 classes.
  * A large portion of the classes in this dataset are animals, plants, and other naturally-occurring objects.

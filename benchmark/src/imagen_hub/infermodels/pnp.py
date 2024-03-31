@@ -4,7 +4,7 @@ import PIL
 class PNP():
     """
     A class for Plug-And-Play (Plug-and-Play Diffusion Features for Text-Driven Image-to-Image Translation).
-    
+
     References: https://github.com/MichalGeyer/pnp-diffusers
     """
     def __init__(self, device="cuda", sd_version="2.1"):
@@ -36,12 +36,12 @@ class PNP():
         """
         # Generate the transformed image as a tensor.
         tensor_image = self.pipe.generate(PIL_image=src_image, prompt=target_prompt, seed=seed)
-        
+
         # Convert the tensor image back to PIL.Image.
         transformed_image = tensor_to_pil(tensor_image)
-        
+
         # Resize the transformed image to match the source image size.
         src_size = src_image.size  # Get the size of the source image.
         resized_transformed_image = transformed_image.resize(src_size, Image.LANCZOS)
-        
+
         return resized_transformed_image

@@ -12,7 +12,7 @@ class TextualInversion():
                  initializer_token='dog',
                  output_dir=None,
                  ):
-                
+
         from imagen_hub.pipelines.textual_inversion.pipeline_textual_inversion import TextualInversionPipeline
         from imagen_hub.pipelines.textual_inversion.pipeline_textual_inversion_multiple_subject import TextualInversionPipelineMulti
 

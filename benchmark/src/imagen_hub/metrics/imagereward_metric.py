@@ -56,7 +56,7 @@ def evaluate_imagereward_score(generated_prompt, generated_image: Union[Image.Im
 
     Returns:
         float: The ImageReward score for the generated image.
-    """    
+    """
     #https://github.com/THUDM/ImageReward/blob/main/ImageReward/ImageReward.py
     rewards = imagereward_model.score(generated_prompt, generated_image)
     return rewards

@@ -12,6 +12,8 @@ __pycache__/
 *checkpoints/
 *mnist
 *my-dreambooth
+*wandb
+*.wandb
 # Src
 *env_cfg/src
 *results/

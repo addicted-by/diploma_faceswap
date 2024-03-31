@@ -10,7 +10,7 @@ image_list = []
 for model_name in model_list:
     model = imagen_hub.load(model_name)
     output = model.infer_one_image(prompt=prompt, seed=42).resize((512,512))
-    image_list.append(output) 
+    image_list.append(output)
 
 show_image = get_concat_pil_images(image_list)
 save_pil_image(show_image, ".", "output3.jpg")

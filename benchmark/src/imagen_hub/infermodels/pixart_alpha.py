@@ -39,4 +39,3 @@ class PixArtAlpha():
             generator=generator,
         ).images[0]
         return image
-    

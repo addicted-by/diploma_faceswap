@@ -25,7 +25,7 @@ if [ ! -d "UniControl" ]; then
 fi
 
 cd UniControl
-wget https://storage.googleapis.com/sfr-unicontrol-data-research/unicontrol.ckpt 
+wget https://storage.googleapis.com/sfr-unicontrol-data-research/unicontrol.ckpt
 #wget https://storage.googleapis.com/sfr-unicontrol-data-research/unicontrol_v1.1.ckpt
 #wget https://storage.googleapis.com/sfr-unicontrol-data-research/unicontrol_v1.1.st
 

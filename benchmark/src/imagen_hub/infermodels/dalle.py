@@ -19,7 +19,7 @@ class DALLE():
         except:
             openai.api_key = os.getenv("OPENAI_API_KEY")
             print("Read key from OPENAI_API_KEY")
- 
+
 
 class DALLE2(DALLE):
     def __init__(self):
@@ -55,7 +55,7 @@ class DALLE2(DALLE):
                 image = PIL.Image.new(mode="RGB", size=(512,512))
 
         return image
-    
+
 class DALLE3(DALLE):
     def __init__(self):
         super().__init__()
@@ -81,7 +81,7 @@ class DALLE3(DALLE):
             )
             image_url = response.data[0].url
             image = load_image(image_url)
-            time.sleep(2) # The default rate limit for the DALL·E API is 50 images per minute. 
+            time.sleep(2) # The default rate limit for the DALL·E API is 50 images per minute.
         except openai.error.OpenAIError as e:
             print(e.http_status)
             print(e.error)

@@ -47,43 +47,43 @@ def main():
     model_list = config.info.running_models
     task_id = config.info.task_id
     if task_id == 0:
-        benchmark_infer(experiment_basename, 
+        benchmark_infer(experiment_basename,
                         model_list = model_list,
                         limit_images_amount = limit_images_amount,
                         result_folder = result_folder,
                         infer_dataset_fn=infer_text_guided_ie_bench)
     elif task_id == 1:
-        benchmark_infer(experiment_basename, 
+        benchmark_infer(experiment_basename,
                         model_list = model_list,
                         limit_images_amount = limit_images_amount,
                         result_folder = result_folder,
                         infer_dataset_fn=infer_mask_guided_ie_bench)
     elif task_id == 2:
-        benchmark_infer(experiment_basename, 
+        benchmark_infer(experiment_basename,
                         model_list = model_list,
                         limit_images_amount = limit_images_amount,
                         result_folder = result_folder,
                         infer_dataset_fn=infer_control_guided_ig_bench)
     elif task_id == 3:
-        benchmark_infer(experiment_basename, 
+        benchmark_infer(experiment_basename,
                         model_list = model_list,
                         limit_images_amount = limit_images_amount,
                         result_folder = result_folder,
                         infer_dataset_fn=infer_subject_driven_ie_bench)
     elif task_id == 4:
-        benchmark_infer(experiment_basename, 
+        benchmark_infer(experiment_basename,
                         model_list = model_list,
                         limit_images_amount = limit_images_amount,
                         result_folder = result_folder,
                         infer_dataset_fn=infer_subject_driven_ig_bench)
     elif task_id == 5:
-        benchmark_infer(experiment_basename, 
+        benchmark_infer(experiment_basename,
                         model_list = model_list,
                         limit_images_amount = limit_images_amount,
                         result_folder = result_folder,
                         infer_dataset_fn=infer_subject_driven_ig_bench)
     elif task_id == 6:
-        benchmark_infer(experiment_basename, 
+        benchmark_infer(experiment_basename,
                         model_list = model_list,
                         limit_images_amount = limit_images_amount,
                         result_folder = result_folder,

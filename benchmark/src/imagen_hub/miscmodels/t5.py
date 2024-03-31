@@ -8,7 +8,7 @@ class T5_Model():
     def __init__(self, device="cuda", weight = "google/flan-t5-xl"):
         """
         Initialize a T5_Model object with the specified device and weight.
-        
+
         Args:
             device (str, optional): The device on which the model will run. Defaults to "cuda".
             weight (str, optional): Pretrained model weights to load. Defaults to "google/flan-t5-xl".
@@ -22,7 +22,7 @@ class T5_Model():
     def get_tokenizer(self):
         """
         Returns the tokenizer associated with the T5 model.
-        
+
         Returns:
             transformers.AutoTokenizer: Tokenizer associated with the T5 model.
         """
@@ -31,10 +31,10 @@ class T5_Model():
     def generate_caption_from_text(self, input_prompt):
         """
         Generate captions for the provided input text.
-        
+
         Args:
             input_prompt (str): The text input for which captions are to be generated.
-            
+
         Returns:
             List[str]: List of generated captions.
         """

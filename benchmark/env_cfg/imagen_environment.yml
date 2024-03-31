@@ -19,7 +19,7 @@ dependencies:
     - pandas<2.0.0
     - peft
     - torch
-    - torchvision 
+    - torchvision
     - torchaudio
     - jupyterlab>=4.0.2
     - notebook>=6.5.4
@@ -56,4 +56,3 @@ dependencies:
     - nltk~=3.8.1
     - krippendorff
     - statsmodels
-

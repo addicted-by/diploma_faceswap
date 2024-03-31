@@ -6,7 +6,7 @@ class MetricLPIPS():
     A wrapper for the LPIPS metric.
     Reference: https://github.com/richzhang/PerceptualSimilarity#a-basic-usage
 
-    Provides methods to evaluate perceptual similarity between two images using 
+    Provides methods to evaluate perceptual similarity between two images using
     Learned Perceptual Image Patch Similarity.
     """
     def __init__(self, device="cuda", net_type: str = 'alex') -> None:
@@ -28,7 +28,7 @@ class MetricLPIPS():
         Args:
             real_image (Image.Image): The reference image.
             generated_image (Image.Image): The generated image to compare with the real image.
-        
+
         Returns:
             float: LPIPS distance between the two images.
         """
@@ -67,7 +67,7 @@ def evaluate_lpips_score(real_image, generated_image, lpips_model, device):
         generated_image (Image.Image): The generated image to compare.
         lpips_model (lpips.LPIPS): The LPIPS model to use for the evaluation.
         device (str): The device to use for computation.
-    
+
     Returns:
         float: LPIPS distance between the two images.
     """

@@ -11,7 +11,7 @@ class MetricCLIPScore():
     def __init__(self, device="cuda") -> None:
         """
         Initialize a MetricCLIPScore object with the specified device.
-        
+
         Args:
             device (str, optional): The device on which the model will run. Defaults to "cuda".
         """
@@ -21,14 +21,14 @@ class MetricCLIPScore():
     def evaluate(self, generated_image: Image.Image, prompt: str, normalize = True):
         """
         Evaluate the alignment between the provided image and text prompt using the CLIPScore metric.
-        
+
         Note: A score of 0.35 typically indicates strong alignment, while 0.25 is considered moderately aligned.
-        
+
         Args:
             generated_image (Image.Image): The generated image for evaluation.
             prompt (str): The text prompt associated with the generated image.
             normalize (bool, optional): If True, normalize the score by dividing it by 100. Defaults to True.
-            
+
         Returns:
             float: The computed CLIPScore.
         """
@@ -42,7 +42,7 @@ class MetricCLIPScore():
 def get_clipscore_model():
     """
     Returns the CLIPScore model initialized with weights from "openai/clip-vit-base-patch16".
-    
+
     Returns:
         torch.nn.Module: Initialized CLIPScore model.
     """

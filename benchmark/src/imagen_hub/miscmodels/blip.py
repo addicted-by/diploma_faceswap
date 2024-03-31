@@ -10,10 +10,10 @@ class BLIP_Model():
     def __init__(self, device="cuda", weight = "Salesforce/blip-image-captioning-base"):
         """
         Initialize a BLIP_Model object with the specified weight and device.
-        
+
         Args:
             device (str, optional): The device on which the model will run. Defaults to "cuda".
-            weight (str, optional): The pretrained weights to use for the model. 
+            weight (str, optional): The pretrained weights to use for the model.
                                     Defaults to "Salesforce/blip-image-captioning-base".
         """
         self.processor = BlipProcessor.from_pretrained(weight)
@@ -24,10 +24,10 @@ class BLIP_Model():
     def predict_one_image(self, image):
         """
         Generate a prediction text for a given image.
-        
+
         Args:
             image (PIL.Image.Image): Image for which the prediction text is to be generated.
-            
+
         Returns:
             str: The generated prediction text.
         """
