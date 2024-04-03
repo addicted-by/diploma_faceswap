@@ -1,0 +1,13 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - dreambooth: default.yaml
+  - textual_inversion: default.yaml
+
+original_work_dir: ${hydra:runtime.cwd}
+data_dir: ${original_work_dir}/data/
+
+seed: null
+
+task_name: "dev"
